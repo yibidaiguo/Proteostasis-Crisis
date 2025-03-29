@@ -9,6 +9,7 @@ public class BluePrintConstruction : MonoBehaviour
 {
     private Tilemap tilemap;
     private BluePrintConfig config;
+    private float radius => tilemap.cellSize.y / 2;
     private ConstructionManager.BuildState buildState => ConstructionManager.Instance.CurrentState;
     
     public void Init()
@@ -59,7 +60,15 @@ public class BluePrintConstruction : MonoBehaviour
     public bool CheckCanConstructed(Vector3 pos,ConstructedTileBase construction)
     {
         TileBase tile = tilemap.GetTile(tilemap.WorldToCell(pos));
-        if (tile is BulePrintDefaultTile) return true;
+        if (!(tile is CanBulidTile)) return false;
+        foreach (Vector3Int neighbor in construction.GetContructionPositions())
+        {
+            Vector3 neighborPos = BluePrintUtility.GetCoordsWithinRadius(pos, neighbor, radius);
+            if (!(tilemap.GetTile(tilemap.WorldToCell(neighborPos)) is CanBulidTile))
+            {
+                return false;
+            }
+        }
         return false;
     }
     

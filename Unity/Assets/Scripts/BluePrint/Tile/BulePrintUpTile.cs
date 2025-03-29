@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[CreateAssetMenu(fileName = "BulePrintDefaultTile", menuName = "Custom Tiles/BulePrintDefaultTile")]
-public class BulePrintDefaultTile : Tile
+[CreateAssetMenu(fileName = "BulePrintUpTile", menuName = "Custom Tiles/BulePrintUpTile")]
+public class BulePrintUpTile : Tile
 {
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
     {
@@ -11,5 +11,4 @@ public class BulePrintDefaultTile : Tile
         tileData.colliderType = ColliderType.Grid;
 
     }
-    
 }

@@ -7,20 +7,21 @@ using UnityEngine.Tilemaps;
 /// </summary>
 public static class BluePrintUtility
 {
+    public const float sqrt3 = 1.73205080757f; // Mathf.Sqrt(3)的近似值
     public static readonly Vector3Int[] Directions =
     {
         new Vector3Int(1, 0), // 右
-        new Vector3Int(1, -1), // 右上
-        new Vector3Int(0, -1), // 左上
+        new Vector3Int(1, -1), // 右下
+        new Vector3Int(0, -1), // 下
         new Vector3Int(-1, 0), // 左
-        new Vector3Int(-1, 1), // 左下
-        new Vector3Int(0, 1), // 右下
+        new Vector3Int(-1, 1), // 左上
+        new Vector3Int(0, 1), // 上
     };
-
+    
     #region 初始化
 
     /// <summary>
-    /// 获取从中心点出发第1到第n圈的所有六边形Tile
+    /// 获取从中心点出发第1到第n圈的所有六边形Tile坐标
     /// </summary>
     /// <param name="tilemap">Tilemap对象</param>
     /// <param name="centerWorldPos">中心点的世界坐标</param>
@@ -46,7 +47,7 @@ public static class BluePrintUtility
     /// <summary>
     /// 广度优先搜索生成1~n层的tile坐标
     /// </summary>
-    private static HashSet<Vector3Int> GetCoordsWithinLayers(Vector3Int start, int n)
+    public static HashSet<Vector3Int> GetCoordsWithinLayers(Vector3Int start, int n)
     {
         HashSet<Vector3Int> visited = new HashSet<Vector3Int>();
         Queue<Vector3Int> queue = new Queue<Vector3Int>();
@@ -116,7 +117,7 @@ public static class BluePrintUtility
     /// <returns></returns>
     public static List<Vector3Int> GetTileNeighborsEmpty(Tilemap tilemap, Vector3Int tile)
     {
-        if (!(tilemap.GetTile(tile) is BulePrintDefaultTile)) return null;
+        if (!(tilemap.GetTile(tile) is CanBulidTile)) return null;
         HashSet<Vector3Int> emptyNeighbors = new HashSet<Vector3Int>();
         float radius = tilemap.cellSize.y / 2;
         Vector3 worldPos = tilemap.CellToWorld(tile);
@@ -143,7 +144,7 @@ public static class BluePrintUtility
 
         foreach (Vector3Int pos in tilemap.cellBounds.allPositionsWithin)
         {
-            if (tilemap.HasTile(pos) && tilemap.GetTile(pos) is BulePrintDefaultTile)
+            if (tilemap.HasTile(pos) && tilemap.GetTile(pos) is CanBulidTile)
             {
                 occupied.Add(pos);
             }
@@ -153,15 +154,24 @@ public static class BluePrintUtility
     }
 
     #endregion
-
+    
     /// <summary>
     /// 根据中心点和offset坐标，计算出在半径为radius的范围内的偏移坐标
     /// </summary>
-    private static Vector3 GetCoordsWithinRadius(Vector3 center, Vector3Int offset, float radius)
+    public static Vector3 GetCoordsWithinRadius(Vector3 center, Vector3Int offset, float radius)
     {
-        const float sqrt3 = 1.73205080757f; // Mathf.Sqrt(3)的近似值
         float x = offset.x * radius * 1.5f;
         float y = (offset.y + offset.x * 0.5f) * radius * sqrt3;
         return new Vector3(center.x + x, center.y + y, 0);
+    }
+    
+    /// <summary>
+    /// 计算坐标系中的层数
+    /// </summary>
+    /// <param name="coord">立方坐标系坐标</param>
+    /// <returns>层数（0为中心层）</returns>
+    public static int GetLayer(Vector3Int coord)
+    {
+        return (Mathf.Abs(coord.x) + Mathf.Abs(coord.y) + Mathf.Abs(coord.z)) / 2 + 1;
     }
 }
