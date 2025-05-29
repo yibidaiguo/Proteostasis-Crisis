@@ -167,7 +167,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 548728987}
-  - {fileID: 2079440112}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &89231720
@@ -182,6 +181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f00ec0b57774064f8c655160248bf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bluePrintConfig: {fileID: 11400000, guid: a4e14f2fb43dc9a42bd0994dd2ba1663, type: 2}
+  _playerConstructionData: {fileID: 0}
 --- !u!114 &89231721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,7 +366,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2079440112}
   m_Father: {fileID: 89231719}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &548728988
@@ -467,6 +469,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ad5cd68318d8347909215ea1a622ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataTilemap: {fileID: 2079440114}
+  viewTilemap: {fileID: 548728989}
 --- !u!19719996 &548728991
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -686,10 +690,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0680ca8a6f6d95a40a8f0cd86bab2552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 548728989}
+  tilemap: {fileID: 2079440114}
   tile: {fileID: 11400000, guid: 7f1a5d94e6fa2c9408ba5e9fe83b8478, type: 2}
   tile2: {fileID: 11400000, guid: 9f88af6254b235740877eb6f29816f06, type: 2}
-  range: 2
+  range: 26
+  curDataConfig: {fileID: 11400000, guid: f86b9bbbf567702478a5a3d6763cff54, type: 2}
 --- !u!4 &1936104307
 Transform:
   m_ObjectHideFlags: 0
@@ -736,7 +741,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 89231719}
+  m_Father: {fileID: 548728987}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &2079440113
 TilemapRenderer:
@@ -888,6 +893,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 89231719}
   - {fileID: 2766297409558941749}
+  - {fileID: 89231719}
   - {fileID: 1936104307}

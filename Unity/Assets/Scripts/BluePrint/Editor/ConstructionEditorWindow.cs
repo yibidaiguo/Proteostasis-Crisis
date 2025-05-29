@@ -9,7 +9,7 @@ public class ConstructionEditorWindow : EditorWindow
 {
     private Dictionary<Vector3Int, HexData> hexagons = new();
     private int curSize;
-    private BluePrintData loadedData;
+    private BluePrintDataConfig loadedDataConfig;
     private string savePath = "Assets/Blueprints";
     private string fileName = "NewBlueprint";
     
@@ -78,22 +78,22 @@ public class ConstructionEditorWindow : EditorWindow
         
         EditorGUILayout.Space(10);
         EditorGUI.BeginChangeCheck();
-        loadedData = (BluePrintData)EditorGUILayout.ObjectField(
+        loadedDataConfig = (BluePrintDataConfig)EditorGUILayout.ObjectField(
             "蓝图文件", 
-            loadedData, 
-            typeof(BluePrintData), 
+            loadedDataConfig, 
+            typeof(BluePrintDataConfig), 
             false
         );
         
         if (EditorGUI.EndChangeCheck())
         {
-            if (loadedData != null)
+            if (loadedDataConfig != null)
             {
                 LoadDataToEditor();
             }
             else
             {
-                loadedData = null;
+                loadedDataConfig = null;
                 hexagons.Clear();
                 GenerateBlueprint();
             }
@@ -249,16 +249,16 @@ public class ConstructionEditorWindow : EditorWindow
     {
         foreach (var hex in hexagons.Values) hex.value = 0;
         
-        if (loadedData != null)
+        if (loadedDataConfig != null)
         {
-            int maxLayer = loadedData.hexagons.Keys
+            int maxLayer = loadedDataConfig.hexagons.Keys
                 .Select(BluePrintUtility.GetLayer)
                 .DefaultIfEmpty(Layers)
                 .Max();
             
             Layers = maxLayer;
             
-            foreach (var pair in loadedData.hexagons)
+            foreach (var pair in loadedDataConfig.hexagons)
             {
                 if (hexagons.TryGetValue(pair.Key, out HexData hex))
                 {
@@ -319,13 +319,13 @@ public class ConstructionEditorWindow : EditorWindow
     /// </summary>
     private void SaveBlueprint()
     {
-        BluePrintData data = loadedData ?? CreateInstance<BluePrintData>();
-        data.hexagons.Clear();
+        BluePrintDataConfig dataConfig = loadedDataConfig ?? CreateInstance<BluePrintDataConfig>();
+        dataConfig.hexagons.Clear();
         
         foreach (var hex in hexagons)
         {
             if(hex.Value.value > 0)
-                data.hexagons.Add(hex.Key, hex.Value.value);
+                dataConfig.hexagons.Add(hex.Key, hex.Value.value);
         }
         
         string assetPath = $"{savePath}/{fileName}.asset".Replace("\\", "/");
@@ -335,7 +335,7 @@ public class ConstructionEditorWindow : EditorWindow
         ).Replace("/", Path.DirectorySeparatorChar.ToString());
         Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
         
-        if (loadedData == null)
+        if (loadedDataConfig == null)
         {
             // 确保路径在Assets目录下
             if (!assetPath.StartsWith("Assets/"))
@@ -344,11 +344,11 @@ public class ConstructionEditorWindow : EditorWindow
                 return;
             }
         
-            AssetDatabase.CreateAsset(data, assetPath);
+            AssetDatabase.CreateAsset(dataConfig, assetPath);
         }
         else
         {
-            EditorUtility.SetDirty(data);
+            EditorUtility.SetDirty(dataConfig);
         }
 
         AssetDatabase.SaveAssets();

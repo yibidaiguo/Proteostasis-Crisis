@@ -21,7 +21,10 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  DefaultTile: {fileID: 11400000, guid: 24b4b80353c2a4d46b203b6e199de909, type: 2}
-  DefaultUpTile: {fileID: 11400000, guid: 159301ec1b4203740a4c60a3d066d01a, type: 2}
+  DefaultCanBuildTile: {fileID: 11400000, guid: 7f1a5d94e6fa2c9408ba5e9fe83b8478, type: 2}
+  DefaultUpTile: {fileID: 11400000, guid: 9f88af6254b235740877eb6f29816f06, type: 2}
+  DefaultHasBuildTile: {fileID: 11400000, guid: 7617628d08db6a940bc8c5de1db4ea44, type: 2}
+  DefaultViewCanTile: {fileID: 11400000, guid: 25c63aabab51dce44a335519f38a8fd8, type: 2}
+  DefaultViewCannotTile: {fileID: 11400000, guid: 4603b05cb52e50148bf10f728dfafa32, type: 2}
   DefaultTilePos: {x: 0, y: 0}
   DefaultTileLayer: 2

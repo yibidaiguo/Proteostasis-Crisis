@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -8,6 +9,8 @@ using UnityEngine.Tilemaps;
 public static class BluePrintUtility
 {
     public const float sqrt3 = 1.73205080757f; // Mathf.Sqrt(3)的近似值
+    public const float cos60 = 0.5f;
+    public const float sin60 = 0.8660254f; // Mathf.Sqrt(3)/2
     public static readonly Vector3Int[] Directions =
     {
         new Vector3Int(1, 0), // 右
@@ -173,5 +176,49 @@ public static class BluePrintUtility
     public static int GetLayer(Vector3Int coord)
     {
         return (Mathf.Abs(coord.x) + Mathf.Abs(coord.y) + Mathf.Abs(coord.z)) / 2 + 1;
+    }
+    
+    /// <summary>
+    /// 旋转坐标
+    /// </summary>
+    /// <param name="original">原始坐标</param>
+    /// <param name="rotationSteps">旋转步数（正数顺时针，负数逆时针，1步=60度）</param>
+    /// <returns>旋转后的坐标</returns>
+    public static List<Vector3> RotateHex(
+        List<Vector3> original,Vector3 center,
+        int rotationSteps)
+    {
+        rotationSteps %= 6;
+        if (rotationSteps < 0) rotationSteps += 6; // 将负数步数转换为等效正数旋转
+        
+        List<Vector3> result = new ();
+        foreach (var pos in original)
+        {
+            Vector3 rotatedPos = pos;
+            // 应用旋转次数
+            for (int i = 0; i < rotationSteps; i++)
+            {
+                rotatedPos = RotateSingleStep(rotatedPos,center);
+            }
+            result.Add(rotatedPos);
+        }
+        return result;
+    }
+
+    /// <summary>
+    /// 单次顺时针旋转60度的坐标变换
+    /// </summary>
+    private static Vector3 RotateSingleStep(Vector3 pos,Vector3 center)
+    {
+        Vector3 relativePos = pos - center;
+        
+        float rotatedX = relativePos.x * cos60 + relativePos.y * sin60;
+        float rotatedY = -relativePos.x * sin60 + relativePos.y * cos60;
+        
+        return new Vector3(
+            rotatedX + center.x,
+            rotatedY + center.y,
+            pos.z  
+        );
     }
 }
