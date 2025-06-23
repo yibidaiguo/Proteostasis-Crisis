@@ -1,0 +1,17 @@
+{
+    "name": "BluePrintSystem",
+    "rootNamespace": "",
+    "references": [
+        "Data",
+        "JKFrame"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
