@@ -671,6 +671,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1936104307}
   - component: {fileID: 1936104306}
+  - component: {fileID: 1936104308}
   m_Layer: 0
   m_Name: Test
   m_TagString: Untagged
@@ -693,8 +694,8 @@ MonoBehaviour:
   tilemap: {fileID: 2079440114}
   tile: {fileID: 11400000, guid: 7f1a5d94e6fa2c9408ba5e9fe83b8478, type: 2}
   tile2: {fileID: 11400000, guid: 9f88af6254b235740877eb6f29816f06, type: 2}
-  range: 26
-  curDataConfig: {fileID: 11400000, guid: f86b9bbbf567702478a5a3d6763cff54, type: 2}
+  range: 3
+  curDataConfig: {fileID: 11400000, guid: cf5fc15f68af60346abcaa85b977ca7d, type: 2}
 --- !u!4 &1936104307
 Transform:
   m_ObjectHideFlags: 0
@@ -710,6 +711,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1936104308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936104305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a19d3cae7cbfa24e9ac610f9aef5b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2079440111
 GameObject:
   m_ObjectHideFlags: 0

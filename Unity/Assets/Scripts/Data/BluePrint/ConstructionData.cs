@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ConstructionData
 {
-   public string constructionName;
+   public ObservableData<string> constructionName = new ();
    public BluePrintData bluePrintData;
    
    public int rotation
@@ -21,13 +21,13 @@ public class ConstructionData
    
    public ConstructionData(string constructionName, BluePrintData bluePrintData,int rotation)
    {
-      this.constructionName = constructionName;
+      this.constructionName.value = constructionName;
       this.bluePrintData = bluePrintData;
       this.rotation = rotation;
    }
 
    public ConstructionData Clone()
    {
-      return new ConstructionData(constructionName, bluePrintData, rotation);
+      return new ConstructionData(constructionName.value, bluePrintData, rotation);
    }
 }

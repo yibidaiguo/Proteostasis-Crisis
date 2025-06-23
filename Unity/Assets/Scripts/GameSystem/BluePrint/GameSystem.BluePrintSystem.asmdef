@@ -1,15 +1,19 @@
 {
-    "name": "BluePrintSystem",
+    "name": "GameSystem.BluePrintSystem",
     "rootNamespace": "",
     "references": [
-        "Data",
-        "JKFrame"
+        "JKFrame",
+        "GameSystem",
+        "Data"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Sirenix.Serialization.dll",
+        "Sirenix.OdinInspector.Attributes.dll"
+    ],
     "autoReferenced": false,
     "defineConstraints": [],
     "versionDefines": [],
