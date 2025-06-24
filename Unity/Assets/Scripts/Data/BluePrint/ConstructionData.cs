@@ -21,13 +21,13 @@ public class ConstructionData
    
    public ConstructionData(string constructionName, BluePrintData bluePrintData,int rotation)
    {
-      this.constructionName.value = constructionName;
+      this.constructionName.Value = constructionName;
       this.bluePrintData = bluePrintData;
       this.rotation = rotation;
    }
 
    public ConstructionData Clone()
    {
-      return new ConstructionData(constructionName.value, bluePrintData, rotation);
+      return new ConstructionData(constructionName.Value, bluePrintData, rotation);
    }
 }

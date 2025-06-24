@@ -1,5 +1,5 @@
 {
-    "name": "GameSystem.BluePrintSystem",
+    "name": "BluePrintSystem",
     "rootNamespace": "",
     "references": [
         "JKFrame",

@@ -1,34 +1,32 @@
 using System;
-using System.Reflection;
 
 public class ObservableData<T>
 {
-    public T value
+    public T Value
     {
-        get =>  _value;
-        set
+        get =>  value;
+        internal set
         {
-            if (!Equals(_value, value))
+            if (!Equals(this.value, value))
             {
-                if(!DataUtility.EnsureCallerIsAllowed()) return;
-                oldValue = _value;
+                oldValue = this.value;
                 newValue = value;
-                _value = value;
+                this.value = value;
                 onValueChange?.Invoke();
             }
         }
     }
 
-    private T _value;
+    private T value;
     private T oldValue;
     private T newValue;
     
     public ObservableData()
     {
-        _value = default;
-        value = _value;
-        oldValue = _value;
-        newValue = _value;
+        value = default;
+        Value = value;
+        oldValue = value;
+        newValue = value;
     }
 
     private Action onValueChange;

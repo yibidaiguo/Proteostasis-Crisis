@@ -11,6 +11,7 @@ public class Test1 : MonoBehaviour
     public int range = 3;
     public BluePrintDataConfig curDataConfig;
     private ConstructionData constructionData = new ("",null, 0);
+    private PlayerData playerConstructionData;
 
     void Start()
     {

@@ -21,7 +21,7 @@ public class ConstructionManager : SingletonMono<ConstructionManager>
     public Action OnStartBuilding{get;private set;} = null;
     public Action OnBuilding{get;private set;} = null;
     public Action OnFinishBuilding{get;private set;} = null;
-    [SerializeField]private PlayerConstructionData _playerConstructionData;
+    [SerializeField]private PlayerData _playerConstructionData;
     private BluePrint bluePrint;
 
     public ConstructionData curData
@@ -99,7 +99,7 @@ public class ConstructionManager : SingletonMono<ConstructionManager>
     public void InitPlayerConstructionData()
     {
         if (_playerConstructionData == null) return;
-        foreach (var constructionData in _playerConstructionData.constructionDictionary)
+        foreach (var constructionData in _playerConstructionData.constructionDictionary.Value)
         {
             Constructed(constructionData.Key, constructionData.Value);
         }
