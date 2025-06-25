@@ -1,6 +1,6 @@
 using System;
 
-public class ObservableData<T>
+public class Data<T>
 {
     public T Value
     {
@@ -21,7 +21,7 @@ public class ObservableData<T>
     private T oldValue;
     private T newValue;
     
-    public ObservableData()
+    public Data()
     {
         value = default;
         Value = value;

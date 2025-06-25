@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-public class ObservableList<T> : IList<T>, IReadOnlyList<T>
+public class MyList<T> : IList<T>, IReadOnlyList<T>
 {
     private readonly List<T> list = new();
     private Action _onCollectionChanged;

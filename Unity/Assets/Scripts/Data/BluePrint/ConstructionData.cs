@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ConstructionData
 {
-   public ObservableData<string> constructionName = new ();
+   public Data<string> constructionName = new ();
    public BluePrintData bluePrintData;
    
    public int rotation

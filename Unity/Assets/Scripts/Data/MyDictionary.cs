@@ -1,8 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
-public class ObservableDictionary<TKey, TValue> : IEnumerable
+public class MyDictionary<TKey, TValue> : IEnumerable
 {
     private readonly Dictionary<TKey, TValue> dictionary = new Dictionary<TKey, TValue>();
     private Action _onDictionaryChange;
