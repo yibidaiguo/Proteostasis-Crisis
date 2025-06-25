@@ -125,16 +125,24 @@ public class BluePrint : MonoBehaviour
     /// <param name="pos"></param>
     /// <param name="data"></param>
     /// <returns></returns>
+    // 构建函数，传入位置和构建数据
     public bool Constructed(Vector3 pos, ConstructionData data)
     {
+        // 检查是否可以构建，如果可以则返回true，否则返回false
         if (!CheckCanConstructed(pos, data,out var posList)) return false;
+        // 遍历构建位置列表
         foreach (Vector3Int constructionPos in posList)
         {
+            // 设置被占用瓦片状态设置为被建造瓦片
             dataTilemap.SetTile(constructionPos,config.DefaultHasBuildTile);
+            // 将建造位置和建筑物坐标绑定在posData中
             posData.Add(constructionPos,dataTilemap.WorldToCell(pos));
         }
+        // 创建建筑物数据
         ConstructionData newData = data.Clone();
+        // 将建筑物数据添绑定在建筑物坐标上并存储在constructionData中
         constructionData.Add(dataTilemap.WorldToCell(pos),newData);
+        // 返回true
         return true;
     }
 
