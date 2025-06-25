@@ -89,6 +89,16 @@ public class MyList<T> : IList<T>, IReadOnlyList<T>
     }
 
     // ========== 观察者模式 ==========
-    public void Watched(Action onChange) => _onCollectionChanged += onChange;
+    public void Watched(Action onChange)
+    {
+        if (onChange == null) return;
+        _onCollectionChanged += onChange;
+    } 
+    
+    public void UnWatched(Action onChange)
+    {
+        if (onChange == null) return;
+        _onCollectionChanged -= onChange;
+    }
 }
 

@@ -90,6 +90,13 @@ public class MyDictionary<TKey, TValue> : IEnumerable
     // 注册变化事件
     public void Watched(Action onDictionaryChange)
     {
+        if(onDictionaryChange == null) return; 
         _onDictionaryChange += onDictionaryChange;
+    }
+
+    public void UnWatched(Action onDictionaryChange)
+    {
+        if(onDictionaryChange == null) return; 
+        _onDictionaryChange -= onDictionaryChange;
     }
 }

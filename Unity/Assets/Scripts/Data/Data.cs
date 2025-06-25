@@ -13,6 +13,7 @@ public class Data<T>
                 newValue = value;
                 this.value = value;
                 onValueChange?.Invoke();
+                tOnValueChange?.Invoke(oldValue,newValue);
             }
         }
     }
@@ -31,14 +32,32 @@ public class Data<T>
 
     private Action onValueChange;
 
-    public void Watched(Action<T,T> watched)
+    private Action<T, T> tOnValueChange;
+
+    
+    public void Watched(Action watched)
     {
-        onValueChange += () =>
-        {
-            T currentOldValue = oldValue;
-            T currentNewValue = newValue;
-            watched?.Invoke(currentOldValue, currentNewValue);
-        };
+        if (watched == null) return;
+        onValueChange += watched;
         onValueChange?.Invoke();
     }
+    public void Watched(Action<T, T> watched)
+    {
+        if (watched == null) return;
+        tOnValueChange += watched; 
+        tOnValueChange?.Invoke(oldValue,newValue);
+    }
+    
+    public void UnWatched(Action watched)
+    {
+        if (watched == null) return;
+        onValueChange -= watched;
+    }
+    
+    public void UnWatched(Action<T, T> watched)
+    {
+        if (watched == null || tOnValueChange == null) return;
+        tOnValueChange -= watched;
+    }
+
 }
