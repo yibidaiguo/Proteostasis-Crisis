@@ -19,7 +19,7 @@ public class StaticConstructionData
     public MyList<ResourceCommand> resourceCommands = new MyList<ResourceCommand>();
 
     //增加生产命令
-    public AddResourceCommand(ResourceCommand command)
+    public void AddResourceCommand(ResourceCommand command)
     {
         resourceCommands.Add(command);
     }

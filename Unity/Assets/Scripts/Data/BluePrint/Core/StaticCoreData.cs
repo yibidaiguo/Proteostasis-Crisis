@@ -8,6 +8,6 @@ public class StaticCoreData : StaticConstructionData
     {
         buildingName.Value = "细胞核";
         
-        buildingDescription.Value = "细胞的控制中心;"
+        buildingDescription.Value = "细胞的控制中心";
     }
 }

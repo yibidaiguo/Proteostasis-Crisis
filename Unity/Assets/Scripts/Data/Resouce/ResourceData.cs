@@ -101,7 +101,7 @@ public class ResourceCommand
         this.resourceDatas = resourceDatas;
         this.outputs = outputs;
     }
-    public Copy(ResourceCommand resourceCommand)//深拷贝
+    public void Copy(ResourceCommand resourceCommand)//深拷贝
     {
         this.resourceDatas = resourceCommand.resourceDatas;
         this.outputs = resourceCommand.outputs;

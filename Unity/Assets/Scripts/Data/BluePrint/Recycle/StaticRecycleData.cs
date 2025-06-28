@@ -6,8 +6,8 @@ public class StaticRecycleData : StaticConstructionData
 {
     public StaticRecycleData()
     {
-        buildingName = "溶酶体";
-        buildingDescription = "回收垃圾，获得资源";
+        buildingName.Value = "溶酶体";
+        buildingDescription.Value = "回收垃圾，获得资源";
         
     }
 }
