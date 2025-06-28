@@ -1,15 +1,21 @@
 using System.IO;
+using cfg;
 using SimpleJSON;
-using UnityEngine;
 
-public class ConfigGlobal : MonoBehaviour
+public static class Config
 {
-    // Start is called before the first frame update
-    void Awake()
-    {
-        string gameConfDir = "Assets/Scripts/Config/Gen/Luban";
-        var tables = new cfg.Tables(file => JSON.Parse(File.ReadAllText($"{gameConfDir}/{file}.json")));
-    }
+    private static Tables _tables;
+    private static string configPath = "Assets/Scripts/Config/Gen/Luban";
 
-    
+    public static Tables Tables
+    {
+        get
+        {
+            if (_tables == null)
+            {
+                _tables = new Tables(file => JSON.Parse(File.ReadAllText($"{configPath}/{file}.json")));
+            };
+            return _tables;
+        }
+    }
 }
