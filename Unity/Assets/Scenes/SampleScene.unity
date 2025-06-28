@@ -182,7 +182,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bluePrintConfig: {fileID: 11400000, guid: a4e14f2fb43dc9a42bd0994dd2ba1663, type: 2}
-  _playerConstructionData: {fileID: 0}
 --- !u!114 &89231721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -672,6 +671,7 @@ GameObject:
   - component: {fileID: 1936104307}
   - component: {fileID: 1936104306}
   - component: {fileID: 1936104308}
+  - component: {fileID: 1936104309}
   m_Layer: 0
   m_Name: Test
   m_TagString: Untagged
@@ -721,6 +721,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a19d3cae7cbfa24e9ac610f9aef5b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1936104309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936104305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d97e31f66375a49b43f7aef14d49be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2079440111
